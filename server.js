@@ -12,8 +12,6 @@ const path = require("path");
 app.use(bodyParser.json());
 app.use(cors());
 
-
-
 // SQL Server configuration
 const config = {
   user: "sa",
@@ -116,7 +114,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *         description: Internal server error
  */
 
-
 app.post("/api/contact", async (req, res) => {
   const { name, email, subject, message } = req.body;
 
@@ -175,10 +172,10 @@ app.get("/api/contact/list", async (req, res) => {
   }
 });
 
-app.use(express.static(path.join(__dirname, "frontend/build"))); // Adjust the path as needed
+app.use(express.static(path.join(__dirname, "build"))); // Adjust the path as needed
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 // Start the server
